@@ -1,8 +1,8 @@
 l, a, b, m = gets.chomp.split(' ').map{|i| i.to_i }
 
-str = ''
+amr = ''
 l.times{|i|
-  str += (a + b * i).to_s
+  amr = ((amr + (a + b * i).to_s).to_i % m).to_s
 }
-puts str.to_i % m
+puts amr
 
