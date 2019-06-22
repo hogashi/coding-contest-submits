@@ -2,7 +2,7 @@ n = gets.chomp.to_i
 points = {}
 points_by_y = {}
 n.times{|i|
-  x, y = gets.chomp.split(' ').map{|i| i.to_i }
+  x, y = gets.chomp.split(' ').map{|ii| ii.to_i }
   points[x] = [] unless points[x]
   points[x].push(y)
   points_by_y[y] = [] unless points_by_y[y]
