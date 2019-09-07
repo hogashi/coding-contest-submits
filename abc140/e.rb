@@ -1,26 +1,24 @@
 n = gets.chomp.to_i
 pp = gets.chomp.split(' ').map{|i| i.to_i }
 
-sum = 0
-fir = 0
-sec = 0
-(n - 1).times{|i|
-  fir = pp[i]
-  sec = 0
+def split_sum(pp)
+  if pp.length <= 1
+    return 0
+  end
 
-  (n - i - 1).times{|jj|
-    j = jj + i + 1
-    pj = pp[j]
-    if pj > sec
-      if pj > fir
-        fir, sec = pj, fir
-      else
-        fir, sec = fir, pj
-      end
-    end
-    # p [i, j, fir, sec]
-    sum += sec
-  }
-}
+  ps = pp.sort
 
-puts sum
+  sum = 0
+  fir, sec = ps[0], ps[1]
+  fi = pp.find_index(fir)
+  si = pp.find_index(sec)
+
+  count = (fi + (pp.length - si))
+  p [[fi, fir], [si, sec], pp.length, count]
+  if pp.length == 2
+    return ps[1] * count
+  end
+  return si * count + split_sum(pp[0 ... fi]) + split_sum(fi == pp.length - 1 ? [] : pp[fi + 1 .. -1]) + split_sum(pp[0 ... si]) + split_sum(si == pp.length - 1 ? [] : pp[si + 1 .. -1])
+end
+
+puts split_sum(pp)
