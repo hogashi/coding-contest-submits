@@ -5,20 +5,29 @@ n.times{|i|
   abc[i] = gets.chomp.split(' ').map{ |e| e.to_i }
 }
 
-# p abc
+# p ['abc', abc]
 
-dp = [-1, 0]
+dp = abc[0]
 
-n.times{|i|
-  max = [nil, 0]
+# p ['dp', dp]
+
+(n - 1).times{|ii|
+  i = ii + 1
+  newdp = [-1, -1, -1]
   abckind.times{|j|
-    # p ['dp', dp]
-    if j != dp[0]
-      cand = dp[1] + abc[i][j]
-      max = [j, cand] if cand > max[1]
-    end
+    abckind.times{|k|
+      if k != j && dp[j] != -1
+        cand = dp[j] + abc[i][k]
+        newdp[k] = cand if cand > newdp[k]
+      end
+      # p ['newdp', newdp]
+    }
   }
-  # p ['max', max]
-  dp = max
+  dp = newdp
+  # p ['dp', dp]
 }
-puts dp[1]
+max = 0
+abckind.times{|i|
+  max = dp[i] if dp[i] > max
+}
+puts max
