@@ -25,15 +25,19 @@ sums = [sum]
 
   count = 0
   while af.length >= k
-    (af.length / k).times{|j|
-      willeat = af[k - 1]
+    (af.length / k).times{|jj|
+      j = jj + 1
+      willeat = af[k * j - 1]
       k.times{|i|
-        af[i] -= willeat
+        af[k * (j - 1) + i] -= willeat
       }
       count += willeat
+
+      # p '-- eat --'
+      # p af
     }
 
-    # p '---'
+    # p '--- done ---'
     # p af
     af -= [0]
     af.sort!{|i, j| j <=> i }
