@@ -7,7 +7,7 @@ n.times{|i|
     j = jj + i + 1
     (n - j - 1).times{|kk|
       k = kk + j + 1
-      sum += 1 if el[i] < el[j] + el[k] && el[j] < el[i] + el[k] && el[k] < el[i] + el[j]
+      sum += 1 if (el[i] - el[j]).abs < el[k] && el[k] < el[i] + el[j]
     }
   }
 }
