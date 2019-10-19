@@ -15,7 +15,7 @@ gets.chomp.split(' ').map{|ii|
 }
 a.sort!{|i, j| j <=> i }
 
-# p a
+p a
 
 sums = [sum]
 
@@ -25,23 +25,17 @@ sums = [sum]
 
   count = 0
   while af.length >= k
-    (af.length / k).times{|jj|
-      j = jj + 1
-      willeat = af[k * j - 1]
-      k.times{|i|
-        af[k * (j - 1) + i] -= willeat
-      }
-      count += willeat
-
-      # p '-- eat --'
-      # p af
+    willeat = af[k - 1]
+    k.times{|i|
+      af[i] -= willeat
     }
+    count += willeat
 
-    # p '--- done ---'
-    # p af
+    p '---'
+    p af
     af -= [0]
     af.sort!{|i, j| j <=> i }
-    # p af
+    p af
   end
 
   sums[k - 1] = count
