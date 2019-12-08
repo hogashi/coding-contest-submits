@@ -3,12 +3,14 @@ diver = 10 ** 9 + 7
 n = gets.chomp.to_i
 sum = 0
 a = []
-gets.chomp.split(' ').map{|ii|
+count = 0
+gets.chomp.split(' ').each{|ii|
   i = ii.to_i
   a.each{|j|
     sum += i ^ j
   }
-  a.push(i)
+  a[count] = i
+  count += 1
 }
 
 if sum > diver
