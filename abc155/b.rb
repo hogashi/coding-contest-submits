@@ -1,6 +1,6 @@
 gets.chomp.to_i
 
-gets.chomp.split(' ').map{|i|
+gets.chomp.split(' ').each{|i|
   ii = i.to_i
   if ii % 2 == 0
     if (ii % 3 != 0) && (ii % 5 != 0)
@@ -10,6 +10,4 @@ gets.chomp.split(' ').map{|i|
   end
 }
 
-if approved
-  puts 'APPROVED'
-end
+puts 'APPROVED'
