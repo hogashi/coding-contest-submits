@@ -3,10 +3,15 @@ a = []
 sekis = []
 gets.chomp.split(' ').each{|i|
   ii = i.to_i
-  sekis.concat(a.map{|j| ii * j })
+  a.each{|j|
+    seki = ii * j
+    index = sekis.bsearch_index{|k| k >= seki }
+    if index.nil?
+      index = sekis.length
+    end
+    sekis.insert(index, seki)
+  }
   a.push(ii)
 }
 
-sorted = sekis.sort
-
-puts sorted[k - 1]
+puts sekis[k - 1]
