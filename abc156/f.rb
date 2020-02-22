@@ -3,16 +3,23 @@ d = gets.chomp.split(' ').map{|i| i.to_i }
 
 q.times{|i|
   n, x, m = gets.chomp.split(' ').map{|i| i.to_i }
-  a = [x]
 
-  ans = 0
-  (n - 1).times{|jj|
+  dans = 0
+  danss = [0]
+
+  dsummodms = [d[0] % m]
+  (k - 1).times{|jj|
     j = jj + 1
-    a[j] = a[j - 1] + d[(j - 1) % k]
-    ans += 1 if (a[j - 1] % m) < (a[j] % m)
+    dsummodms[j] = (dsummodms[j - 1] + d[j]) % m
+    dans += 1 if dsummodms[j - 1] < dsummodms[j]
+    danss[j] = dans
   }
+  danss[0] = 1 if dsummodms[k - 1] < dsummodms[0]
 
-  puts ans
+  nmodk = n % k
+  sets = (n - nmodk) / k
+  # p dsummodms
+  # p danss
+  # p [nmodk, sets]
+  puts dans * sets + (sets - (nmodk == 0 ? 1 : 0)) * danss[0]
 }
-
-
