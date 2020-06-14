@@ -7,8 +7,8 @@ gets.chomp.split(' ').each{|i|
 }
 as = aset.keys.sort{|a, b| b <=> a }
 
-p aset
-p as
+# p aset
+# p as
 
 i = 0
 count = 0
