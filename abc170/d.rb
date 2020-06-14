@@ -1,11 +1,19 @@
 n = gets.chomp.to_i
+as = []
 aset = {}
 gets.chomp.split(' ').each{|i|
   ii = i.to_i
-  aset[ii] = 0 if aset[ii].nil?
+  if aset[ii].nil?
+    aset[ii] = 0
+    index = as.bsearch_index{|v| v < ii }
+    if index.nil?
+      as.push(ii)
+    else
+      as.insert(index, ii)
+    end
+  end
   aset[ii] += 1
 }
-as = aset.keys.sort{|a, b| b <=> a }
 
 # p aset
 # p as
@@ -13,16 +21,14 @@ as = aset.keys.sort{|a, b| b <=> a }
 i = 0
 count = 0
 as.each{|ai|
-  is_warikireru = false
   if aset[ai] > 1
     i += 1
     next
   end
+  is_warikireru = false
   (n - i - 1).times{|jj|
-    j = jj + i + 1
-    aj = as[j]
-    # p [count, i, j, ai, aj, ai % aj === 0]
-    if ai % aj === 0
+    # p [count, i, jj + i + 1, ai, as[jj + i + 1], ai % as[jj + i + 1] === 0]
+    if ai % as[jj + i + 1] === 0
       is_warikireru = true
       break
     end
