@@ -18,6 +18,8 @@ gets.chomp.split(' ').each{|i|
 # p aset
 # p as
 
+length = as.length
+
 i = 0
 count = 0
 as.each{|ai|
@@ -26,7 +28,7 @@ as.each{|ai|
     next
   end
   is_warikireru = false
-  (n - i - 1).times{|jj|
+  (length - i - 1).times{|jj|
     # p [count, i, jj + i + 1, ai, as[jj + i + 1], ai % as[jj + i + 1] === 0]
     if ai % as[jj + i + 1] === 0
       is_warikireru = true
