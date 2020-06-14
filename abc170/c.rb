@@ -22,9 +22,9 @@ else
     cursormin = x - cursordiff
   end
 
-  if pset[cursormax].nil?
-    puts cursormax
-  else
+  if pset[cursormin].nil?
     puts cursormin
+  else
+    puts cursormax
   end
 end
