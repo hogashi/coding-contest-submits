@@ -29,8 +29,9 @@ as.each{|ai|
   end
   is_warikireru = false
   (length - i - 1).times{|jj|
-    # p [count, i, jj + i + 1, ai, as[jj + i + 1], ai % as[jj + i + 1] === 0]
-    if ai % as[jj + i + 1] === 0
+    j = length - jj - 1
+    # p [count, i, j, ai, as[j], ai % as[jj + i + 1] === 0]
+    if ai % as[j] === 0
       is_warikireru = true
       break
     end
