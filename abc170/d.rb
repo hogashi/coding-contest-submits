@@ -18,7 +18,7 @@ gets.chomp.split(' ').each{|i|
 # p aset
 # p as
 
-length = as.length
+last = as.last
 
 j = 0
 as.each{|aj|
@@ -27,13 +27,15 @@ as.each{|aj|
     next
   end
 
-  (length - j - 1).times{|ii|
-    ai = as[ii + j + 1]
-    # p [ai, aj, aset[aj] != -1, ai % aj, ai % aj === 0, aset[aj] != -1 && ai % aj === 0]
-    if aset[ai] != -1 && ai % aj === 0
+  mul = 2
+  ai = aj * mul
+  while ai <= last
+    if aset[ai] != -1
       aset[ai] = -1
     end
-  }
+    mul += 1
+    ai = aj * mul
+  end
   j += 1
 }
 
