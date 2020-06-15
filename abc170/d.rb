@@ -5,7 +5,7 @@ gets.chomp.split(' ').each{|i|
   ii = i.to_i
   if aset[ii].nil?
     aset[ii] = 0
-    index = as.bsearch_index{|v| v < ii }
+    index = as.bsearch_index{|v| v > ii }
     if index.nil?
       as.push(ii)
     else
@@ -20,24 +20,23 @@ gets.chomp.split(' ').each{|i|
 
 length = as.length
 
-i = 0
-count = 0
-as.each{|ai|
-  if aset[ai] > 1
-    i += 1
+j = 0
+as.each{|aj|
+  if aset[aj] === -1
+    j += 1
     next
   end
-  is_warikireru = false
-  (length - i - 1).times{|jj|
-    j = length - jj - 1
-    # p [count, i, j, ai, as[j], ai % as[jj + i + 1] === 0]
-    if ai % as[j] === 0
-      is_warikireru = true
-      break
+
+  (length - j - 1).times{|ii|
+    ai = as[ii + j + 1]
+    # p [ai, aj, aset[aj] != -1, ai % aj, ai % aj === 0, aset[aj] != -1 && ai % aj === 0]
+    if aset[ai] != -1 && ai % aj === 0
+      aset[ai] = -1
     end
   }
-  count += 1 unless is_warikireru
-  i += 1
+  j += 1
 }
 
-puts count
+# p aset
+
+puts as.filter{|ai| aset[ai] === 1 }.length
