@@ -10,17 +10,19 @@ gets.chomp.split(' ').each{|aai|
   }
 }
 
-anss = [(sums[0] * sums[0] / 2 - sums[0]) % mod]
+anss = [((n - 1) * sums[0]) % mod]
 
 nikos = [1, 1]
+nis = 2
 
 (k - 1).times{|ii|
   i = ii + 1
-  anss[i] = (n - i - 1) * sums[i]
+  anss[i] = ((n - nis) * sums[i]) % mod
+  nis *= 2
 
   index = 1
   (nikos - [1]).each{|j|
-    anss[i] += j * sums[index] * sums[i - index]
+    anss[i] = (anss[i] + (j * ((sums[index] * sums[i - index]) % mod)) % mod) % mod
   }
 
   old = 0
