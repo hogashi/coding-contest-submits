@@ -19,8 +19,8 @@ nikos = [1, 1]
   anss[i] = (n - i - 1) * sums[i]
 
   index = 1
-  anss[i] += (nikos - [1]).map{|j|
-    j * sums[index] * sums[i - index]
+  (nikos - [1]).each{|j|
+    anss[i] += j * sums[index] * sums[i - index]
   }
 
   old = 0
