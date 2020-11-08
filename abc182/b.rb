@@ -4,7 +4,7 @@ a = gets.chomp.split(' ').map(&:to_i).sort
 gcd = 0
 gcdd = 0
 
-(a.last - 2).times{|ii|
+(a.last - 1).times{|ii|
   i = ii + 2
   gcddi = a.filter{|aa| aa % i == 0 }.length
   if gcdd < gcddi
