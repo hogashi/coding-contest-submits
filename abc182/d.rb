@@ -1,28 +1,24 @@
 n = gets.chomp.to_i
 max = 0
-summax = 0
-sumrest = 0
+sumposmax = 0
+sum = 0
 pos = 0
 a = gets.chomp.split(' ').map{|ii|
   i = ii.to_i
 
-  # p [pos, summax, sumrest, i]
+  # p [pos, max, sumposmax, sum, i]
 
-  pos += summax
-  if i > 0
-    pos += i
-    max = pos if max < pos
-  else
-    max = pos if max < pos
-    pos += i
+  posmax = pos + sumposmax
+  max = posmax if max < posmax
+
+  pos += sum + i
+  max = pos if max < pos
+  if sum + i > sumposmax
+    sumposmax = sum + i
   end
-  pos += sumrest
-  if i > sumrest
-    summax += i + sumrest
-    sumrest = 0
-  else
-    sumrest += i
-  end
+  sum += i
 }
+
+# p [pos, max, sumposmax, sum]
 
 puts max
