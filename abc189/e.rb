@@ -33,16 +33,16 @@ m.times{|i|
   o = op[i]
 
   case o[0]
-  when '1'
+  when 1
     shogen -= 1
     shogen = 4 if shogen == 0
     jikunamae *= -1
-  when '2'
+  when 2
     shogen += 1
     shogen = 1 if shogen == 5
     jikunamae *= -1
-  when '3'
-    kijun = o[2].to_i
+  when 3
+    kijun = o[1]
     yjikumuki = 1
     if jikunamae == 1
       yjikumuki = -1 if shogen == 2 || shogen == 3
@@ -52,8 +52,8 @@ m.times{|i|
       genten[0] += 2 * kijun * yjikumuki
     end
     shogen = yhantenshogen[shogen]
-  when '4'
-    kijun = o[2].to_i
+  when 4
+    kijun = o[1]
     xjikumuki = 1
     xjikumuki = -1 if shogen == 3 || shogen == 4
     if jikunamae == 1
@@ -78,6 +78,7 @@ m.times{|i|
 q = gets.chomp.to_i
 q.times{|i|
   a, b = gets.chomp.split(' ').map(&:to_i)
+  b -= 1
 
   acase = all_cases[a]
   agenten = acase[:genten]
