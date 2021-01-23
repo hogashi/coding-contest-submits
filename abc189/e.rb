@@ -34,12 +34,22 @@ m.times{|i|
 
   case o[0]
   when 1
-    shogen -= 1
-    shogen = 4 if shogen == 0
+    if jikunamae == 1
+      shogen -= 1
+      shogen = 4 if shogen == 0
+    else
+      shogen += 1
+      shogen = 1 if shogen == 5
+    end
     jikunamae *= -1
   when 2
-    shogen += 1
-    shogen = 1 if shogen == 5
+    if jikunamae == 1
+      shogen += 1
+      shogen = 1 if shogen == 5
+    else
+      shogen -= 1
+      shogen = 4 if shogen == 0
+    end
     jikunamae *= -1
   when 3
     kijun = o[1]
