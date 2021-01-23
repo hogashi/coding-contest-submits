@@ -5,11 +5,11 @@ n.times{|i|
   x[i], y[i] = gets.chomp.split(' ').map(&:to_i)
 }
 
-xhantenshogen = [
+yokohantenshogen = [
   -1, # ignore 0
   4, 3, 2, 1
 ]
-yhantenshogen = [
+tatehantenshogen = [
   -1, # ignore 0
   2, 1, 4, 3
 ]
@@ -43,27 +43,28 @@ m.times{|i|
     jikunamae *= -1
   when 3
     kijun = o[1]
+    xjikumuki = 1
+    if jikunamae == 1
+      xjikumuki = -1 if shogen == 3 || shogen == 4
+      genten[0] += 2 * kijun * xjikumuki
+      shogen = yokohantenshogen[shogen]
+    else
+      xjikumuki = -1 if shogen == 2 || shogen == 3
+      genten[1] += 2 * kijun * xjikumuki
+      shogen = tatehantenshogen[shogen]
+    end
+  when 4
+    kijun = o[1]
     yjikumuki = 1
     if jikunamae == 1
       yjikumuki = -1 if shogen == 2 || shogen == 3
       genten[1] += 2 * kijun * yjikumuki
+      shogen = tatehantenshogen[shogen]
     else
       yjikumuki = -1 if shogen == 3 || shogen == 4
       genten[0] += 2 * kijun * yjikumuki
+      shogen = yokohantenshogen[shogen]
     end
-    shogen = yhantenshogen[shogen]
-  when 4
-    kijun = o[1]
-    xjikumuki = 1
-    xjikumuki = -1 if shogen == 3 || shogen == 4
-    if jikunamae == 1
-      xjikumuki = -1 if shogen == 3 || shogen == 4
-      genten[0] += 2 * kijun * xjikumuki
-    else
-      xjikumuki = -1 if shogen == 2 || shogen == 3
-      genten[1] += 2 * kijun * xjikumuki
-    end
-    shogen = xhantenshogen[shogen]
   else
     p o
   end
@@ -74,6 +75,7 @@ m.times{|i|
     :jikunamae => jikunamae,
   })
 }
+# p all_cases
 
 q = gets.chomp.to_i
 q.times{|i|
