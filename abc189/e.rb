@@ -90,8 +90,24 @@ q.times{|i|
   bx = x[b]
   by = y[b]
 
-  bx, by = by, bx if ajikunamae == -1
-  case shogen
+  # p [1, bx, by]
+
+  bx -= agenten[0]
+  by -= agenten[1]
+
+  # p [2, bx, by]
+
+  if ajikunamae == -1
+    if bx * by > 0
+      bx, by = -by, -bx
+    else
+      bx, by = by, bx
+    end
+  end
+
+  # p [3, bx, by]
+
+  case ashogen
   when 2
     by *= -1
   when 3
