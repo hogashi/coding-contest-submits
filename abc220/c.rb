@@ -9,7 +9,7 @@ amari = x % asum
 ans = sho * n
 a.each{|i|
   amari -= i
-  break if amari <= 0
+  break if amari < 0
   ans += 1
 }
 
